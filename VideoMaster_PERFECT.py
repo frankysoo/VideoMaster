@@ -25,6 +25,8 @@ import subprocess
 import shutil
 import tempfile
 import time
+import zipfile
+import io
 from pathlib import Path
 
 # 🎯 PERFECT CONFIGURATION - RESOLUTION & QUALITY FIRST
@@ -1077,6 +1079,72 @@ def main():
                     </div>
                     """, unsafe_allow_html=True)
 
+                    # Create ZIP download button for all files
+                    if len(processed_files) > 1:
+                        import zipfile
+                        import io
+
+                        # Create ZIP file in memory
+                        zip_buffer = io.BytesIO()
+                        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+                            for file_info in processed_files:
+                                zip_file.writestr(file_info['filename'], file_info['data'])
+
+                        zip_data = zip_buffer.getvalue()
+                        total_size = sum(file_info['size'] for file_info in processed_files)
+
+                        # Download All button with enhanced styling
+                        st.markdown("""
+                        <style>
+                        .download-all-button {
+                            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+                            color: white !important;
+                            border: none !important;
+                            border-radius: 25px !important;
+                            padding: 1rem 2rem !important;
+                            font-size: 1.1rem !important;
+                            font-weight: 600 !important;
+                            text-transform: uppercase !important;
+                            letter-spacing: 1px !important;
+                            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4) !important;
+                            transition: all 0.3s ease !important;
+                        }
+                        .download-all-button:hover {
+                            transform: translateY(-3px) !important;
+                            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6) !important;
+                        }
+                        </style>
+                        """, unsafe_allow_html=True)
+
+                        col_all1, col_all2, col_all3 = st.columns([1, 2, 1])
+                        with col_all2:
+                            st.download_button(
+                                label=f"📦 DOWNLOAD ALL VIDEOS ({len(processed_files)} files, {total_size:.1f} MB)",
+                                data=zip_data,
+                                file_name=f"VideoMaster_PERFECT_Batch_{len(processed_files)}_videos.zip",
+                                mime="application/zip",
+                                use_container_width=True,
+                                key="download_all_videos"
+                            )
+
+                        st.markdown("""
+                        <div style="text-align: center; margin: 1rem 0; padding: 1.5rem;
+                                    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
+                                    border-radius: 15px; border: 2px solid rgba(16, 185, 129, 0.3);
+                                    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #10b981; font-weight: 600;">
+                                🎉 Bulk Download Available!
+                            </h4>
+                            <p style="margin: 0; color: #059669; font-weight: 500; font-size: 1.1rem;">
+                                💡 <strong>Download All</strong> creates a convenient ZIP file with all your processed videos!<br>
+                                📦 Perfect for sharing or organizing your batch-processed content.
+                            </p>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                        st.markdown("---")
+                        st.markdown("### 📁 Individual Downloads")
+
                     # Create download buttons for each processed file
                     for file_info in processed_files:
                         col_dl1, col_dl2, col_dl3 = st.columns([1, 2, 1])
@@ -1242,6 +1310,34 @@ def main():
         """, unsafe_allow_html=True)
 
         # Show download buttons for previously processed files
+        if len(st.session_state.processed_files) > 1:
+            import zipfile
+            import io
+
+            # Create ZIP file in memory for previous files
+            zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+                for file_info in st.session_state.processed_files:
+                    zip_file.writestr(file_info['filename'], file_info['data'])
+
+            zip_data = zip_buffer.getvalue()
+            total_size = sum(file_info['size'] for file_info in st.session_state.processed_files)
+
+            # Download All button for previous files
+            col_prev_all1, col_prev_all2, col_prev_all3 = st.columns([1, 2, 1])
+            with col_prev_all2:
+                st.download_button(
+                    label=f"📦 DOWNLOAD ALL PREVIOUS ({len(st.session_state.processed_files)} files, {total_size:.1f} MB)",
+                    data=zip_data,
+                    file_name=f"VideoMaster_PERFECT_Previous_{len(st.session_state.processed_files)}_videos.zip",
+                    mime="application/zip",
+                    use_container_width=True,
+                    key="download_all_previous_videos"
+                )
+
+            st.markdown("---")
+            st.markdown("### 📁 Individual Previous Downloads")
+
         for file_info in st.session_state.processed_files:
             col_prev1, col_prev2, col_prev3 = st.columns([1, 2, 1])
             with col_prev2:

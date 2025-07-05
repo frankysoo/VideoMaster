@@ -17,11 +17,21 @@ A powerful web-based platform for automatically adding outro videos to multiple 
 - **🔄 Universal Resolution Support**: Automatically handles any video resolution (720x1280, 1920x1080, 360x640, etc.)
 - **⚡ Professional-Grade Processing**: Powered by FFmpeg with optimized encoding settings
 - **🌐 Modern Web Interface**: Intuitive drag-and-drop interface with dark/light theme support
-- **📥 Bulk Download**: Download all processed videos as a convenient ZIP file
+- **📦 One-Click Bulk Download**: Download all processed videos in a single ZIP file with one click ⭐ **NEW!**
 - **🎨 Beautiful UI**: Responsive design with smooth animations and professional styling
-- **🐳 Docker Ready**: Easy deployment with Docker and Docker Compose
+- **💾 Smart File Management**: Automatic cleanup and organized output with professional naming
 - **🔧 Configurable Settings**: Multiple quality presets and processing speed options
 - **📱 Cross-Platform**: Works on Windows, macOS, and Linux
+
+## 🎉 What's New in Latest Version
+
+### 📦 One-Click Bulk Download Feature
+- **🚀 Download All Videos**: Get all processed videos in a single ZIP file
+- **⚡ One-Click Convenience**: No need to download videos individually
+- **📁 Smart Organization**: Automatically organized ZIP files with descriptive names
+- **💾 Memory Efficient**: Creates ZIP files in memory without temporary disk usage
+- **📊 Size Information**: Shows total file count and combined size
+- **🎯 Perfect for Batch Processing**: Ideal for content creators processing multiple videos
 
 ## 🚀 Quick Start
 

@@ -5,6 +5,32 @@ All notable changes to VideoMaster Platform will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-01-04
+
+### 🎉 Major Feature Addition
+
+#### ✨ Added
+- **📦 One-Click Bulk Download**: Download all processed videos in a single ZIP file with one click
+- **🚀 Smart ZIP Creation**: Automatically creates compressed archives with optimized file names
+- **💾 Memory Efficient Processing**: Creates ZIP files in memory without temporary disk usage
+- **📊 Enhanced Download UI**: Beautiful download section with size information and file counts
+- **🎯 Batch Organization**: Perfect for content creators processing multiple videos
+- **📁 Flexible Download Options**: Choose between individual file downloads or bulk ZIP download
+
+#### 🔧 Technical Improvements
+- **ZIP Compression**: Uses `zipfile.ZIP_DEFLATED` for optimal file sizes
+- **Session Persistence**: Bulk download works with both current and previously processed files
+- **Enhanced Styling**: Premium button design with gradients and hover effects
+- **Smart File Naming**: ZIP files named with batch info (e.g., `VideoMaster_PERFECT_Batch_5_videos.zip`)
+
+#### 🎨 UI/UX Enhancements
+- **Visual Indicators**: Clear messaging about bulk download benefits
+- **Organized Sections**: Separates bulk download from individual downloads
+- **Professional Styling**: Enhanced button design with premium animations
+- **User Guidance**: Helpful explanations about download options
+
+---
+
 ## [1.0.0] - 2025-01-04
 
 ### 🎉 Initial Release
